@@ -5,12 +5,14 @@
   "description": "TypeScript Redux implementation",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server",
+    "start": "concurrently -k -n watch,serve \"npm run watch\" \"npm run serve\"",
+    "serve": "lite-server",
     "watch": "tsc --watch"
   },
   "author": "SPI3300",
   "license": "MIT",
   "devDependencies": {
+    "concurrently": "3.5.1",
     "lite-server": "2.3.0",
     "typescript": "2.7.2"
   }
