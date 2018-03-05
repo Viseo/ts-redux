@@ -9,5 +9,6 @@ export const count: Reducer<number, CountActions> = logger(
       case Actions.Decrement: return state - action.payload;
       default: return state;
     }
-  }
+  },
+  'count'
 );
