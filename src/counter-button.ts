@@ -6,7 +6,7 @@ const enum ActionValues {
   Increment = 'increment',
 }
 
-class CounterButton extends HTMLElement {//HTMLButtonElement {
+class CounterButton extends HTMLElement {
   constructor() {
     super();
     this.addEventListener('click', () => this.onClick());
@@ -30,4 +30,4 @@ class CounterButton extends HTMLElement {//HTMLButtonElement {
   }
 }
 
-customElements.define('counter-button', CounterButton);//, { extends: 'button' });
+customElements.define('counter-button', CounterButton);
