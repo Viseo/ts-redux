@@ -11,6 +11,8 @@ $ npm start
 
 You may need to open *http://localhost:3000/* in your recent browser of choice.
 
+Now open the browser's dev tools to see the app logs.
+
 ## License
 
 MIT
