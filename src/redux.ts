@@ -1,4 +1,5 @@
 import { Actions } from './actions.js';
+import { DevToolsAction, DevToolsConnection, devTools } from './devtools.js';
 
 export abstract class Action<T> {
   abstract readonly type: Actions;
@@ -45,10 +46,13 @@ export class Store<T extends State> {
   private state: T;
   private readonly emitter: DocumentFragment;
   private readonly event: string = 'dispatch';
+  private readonly devTools: DevToolsConnection<T>;
 
   constructor(private readonly reducer: Reducer<T>) {
     // Easy way to handle event listeners.
     this.emitter = document.createDocumentFragment();
+    this.devTools = devTools.connect();
+    this.devTools.subscribe(action => this.onDevToolsAction(action));
     this.dispatch(new Init());
   }
 
@@ -63,8 +67,17 @@ export class Store<T extends State> {
     return () => { this.emitter.removeEventListener(this.event, handler); };
   }
 
-  dispatch(action: Action<any>): void {
-    this.state = this.reducer(this.state, action);
+  dispatch<T extends Action<any>>(action: T): void {
+    this.setState(this.reducer(this.state, action));
+    this.devTools.send(action, this.getState());
+  }
+
+  private setState(state: T): void {
+    this.state = state;
     this.emitter.dispatchEvent(new Event(this.event));
+  }
+
+  private onDevToolsAction({ state, type }: DevToolsAction): void {
+    if (type === 'DISPATCH') { this.setState(JSON.parse(state)); }
   }
 }
