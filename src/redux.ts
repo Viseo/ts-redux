@@ -1,4 +1,4 @@
-import { Actions, CountActions } from './actions.js';
+import { Actions } from './actions.js';
 
 export abstract class Action<T> {
   abstract readonly type: Actions;
