@@ -2,7 +2,7 @@ import { Action, State } from './redux';
 
 declare const window: Window & {
   __REDUX_DEVTOOLS_EXTENSION__: DevTools;
-}
+};
 
 export interface DevToolsAction {
   state: string;

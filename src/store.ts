@@ -4,7 +4,7 @@ import { log } from './logger.js';
 
 export type State = {
   count: number;
-}
+};
 
 export type Extractor<T> = (state: State) => T;
 export type Selector<T> = () => T;
