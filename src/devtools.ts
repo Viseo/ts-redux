@@ -21,7 +21,7 @@ export interface DevTools {
   connect<T extends State>(): DevToolsConnection<T>;
 }
 
-export function noop(): void {}
+function noop(): void {}
 
 export const devTools: DevTools = window.__REDUX_DEVTOOLS_EXTENSION__ || {
   connect: () => ({

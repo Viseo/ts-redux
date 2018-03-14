@@ -1,8 +1,8 @@
 import { Action, Reducer } from './redux.js';
 
-export function logger<T, U extends Action<any> = Action<any>>(
+export function log<T, U extends Action<any> = Action<any>>(
   reducer: Reducer<T, U>,
-  prefix: string = 'logger'
+  prefix: string = 'Logger'
 ): Reducer<T, U> {
   return (oldState, action) => {
     const newState: T = reducer(oldState, action);
