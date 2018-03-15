@@ -1,5 +1,6 @@
 # TypeScript Redux implementation
 
+http://slides.com/fingerproof/ts-redux
 https://www.meetup.com/fr-FR/VISEO-Tech-an-Hour/events/248336238/
 
 ## Run the code
