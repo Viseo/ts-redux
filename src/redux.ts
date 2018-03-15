@@ -28,16 +28,15 @@ export function combineReducers<T extends State>(
   // Use `Object.create(null)` to avoid potential prototypal issues.
   return (oldState: T = Object.create(null), action): T => {
     const newState: T = Object.create(null);
-
     // Let only changes through to know whether to return new or old state.
     return Object.keys(reducers).filter(key => {
       const oldValue: any = oldState[key];
       const newValue: any = reducers[key](oldValue, action);
-
-      if (oldValue === newValue) { return false; }
+      // Store the new value in the new state.
       newState[key] = newValue;
-      return true;
-
+      // Keep only changes in the array.
+      return oldValue !== newValue
+    // If no changes, return the old state for performance reasons.
     }).length ? newState : oldState;
   };
 }
@@ -67,7 +66,7 @@ export class Store<T extends State> {
     return () => { this.emitter.removeEventListener(this.event, handler); };
   }
 
-  dispatch<T extends Action<any>>(action: T): void {
+  dispatch<U extends Action<any>>(action: U): void {
     this.setState(this.reducer(this.state, action));
     this.devTools.send(action, this.getState());
   }
