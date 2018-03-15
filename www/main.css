@@ -40,20 +40,7 @@ counter-display {
   background: #9bbc0f;
   border: 1rem solid #777777;
   color: #306230;
-  font-size: 2rem;
-}
-
-counter-display::before,
-counter-display::after {
-  color: #8bac0f;
-}
-
-counter-display::before {
-  content: '{{ ';
-}
-
-counter-display::after {
-  content: ' }}';
+  font-size: 1.5rem;
 }
 
 counter-button {

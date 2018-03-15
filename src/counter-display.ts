@@ -1,5 +1,5 @@
 import { store } from './store.js';
-import { count } from './selectors.js';
+import { count, msg } from './selectors.js';
 
 class CounterDisplay extends HTMLElement {
   private unsubscribe: Function;
@@ -14,7 +14,7 @@ class CounterDisplay extends HTMLElement {
   }
 
   private syncContent(): void {
-    this.textContent = count().toString();
+    this.innerHTML = `${count()}<br>${msg()}`;
   }
 }
 

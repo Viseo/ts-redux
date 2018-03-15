@@ -2,8 +2,14 @@ import { Store, combineReducers } from './redux.js';
 import * as reducers from './reducers.js';
 import { log } from './logger.js';
 
+export const enum Messages {
+  Ok = 'YEAH!',
+  Ko = 'WTF BRO?!'
+}
+
 export type State = {
   count: number;
+  message: Messages;
 };
 
 export type Extractor<T> = (state: State) => T;
